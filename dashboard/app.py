@@ -8,13 +8,25 @@ app = dash.Dash(__name__)
 server = app.server
 
 app.layout = html.Div([
-    html.P(html.Div(html.H3('Annual Campaign Dashboard'))),
+    html.Div(
+        html.Img(src='static/New JCO Logo.png'),
+        style={'textAlign': 'center'}
+    ),
+    html.P(
+        html.Div(
+            html.H3('Annual Campaign Dashboard'),
+            style={'textAlign': 'center'}
+        )
+    ),
     dash_table.DataTable(
         id='philanthropy_dashboard',
-        style_table={
-            'maxHeight': '700px',
-            'overflowY': 'scroll'
-        },
+        # style_table={
+        #     'maxHeight': '700px',
+        #     'overflowY': 'scroll'
+        # },
+        # style_cell={
+        #     'maxWidth': '50px',
+        # },
         columns=[
             {'name': "", 'id': "labels"},
             {'name': "FY21 YTD", 'id': "fy21_ytd"},
@@ -27,4 +39,5 @@ app.layout = html.Div([
 ])
 
 if __name__ == '__main__':
+    print(data.to_dict('records'))
     server.run()

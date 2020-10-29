@@ -16,27 +16,29 @@ def get_kpi(name, db_id='4249COL'):
 
 
 data_dict = {
-    'Labels': [
+    'labels': [
         'Flagship',
         'Israel/Global',
         # 'Jewish Life and Engagement',
         # 'Jewish Community Relations Council',
         # 'Regional Security Initiative',
         'Aspen',
-        # 'Sponsorships',
-        # 'Operations',
+        'Sponsorships',
+        'Operations',
     ],
-    'FY21 YTD': [
-        get_kpi('KPI Unrestricted - AK'),
-        get_kpi('KPI Israel Global - SM'),
-        get_kpi('KPI Aspen - AK'),
-        # get_kpi('KPI In year sponsorships and grants - AK'),
+    'fy21_ytd': [
+        f"${get_kpi('KPI Unrestricted - AK'):,.2f}",
+        f"${get_kpi('KPI Israel Global - SM'):,.2f}",
+        f"${get_kpi('KPI Aspen - AK'):,.2f}",
+        f"${get_kpi('KPI In year sponsorships and grants'):,.2f}",
+        f"${get_kpi('KPI Operations - SM'):,.2f}"
     ],
-    'FY21 Goal': [
+    'fy21_goal': [
         '$3,500,000',
         '$0',
         '$0',
-        # '$528,000',
+        '$528,000',
+        '$506,500',
     ]
 }
 data = pd.DataFrame.from_dict(data_dict)
