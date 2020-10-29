@@ -6,6 +6,7 @@ import dash_table
 
 rest_jco = get_data('KPI Rest to Jco (new way) - AK')
 app = dash.Dash(__name__)
+server = app.server
 
 app.layout = html.Div([
     html.P(html.Div(html.H3('Annual Campaign Dashboard'))),
@@ -13,4 +14,4 @@ app.layout = html.Div([
 ])
 
 if __name__ == '__main__':
-    app.run_server(port=8050)
+    server.run(port=8050)
