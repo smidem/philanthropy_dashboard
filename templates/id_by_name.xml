@@ -4,7 +4,7 @@
                xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
     <AdHocQueryGetIDByNameRequest xmlns="Blackbaud.AppFx.WebService.API.1">
-      {% include "bbec_api/client_app.xml"%}
+      {% include "client_app.xml"%}
       <Name>{{ name }}</Name>
     </AdHocQueryGetIDByNameRequest>
   </soap:Body>

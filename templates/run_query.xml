@@ -4,7 +4,7 @@
                xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
     <AdHocQueryProcessRequest AdHocQueryID="{{ query_id }}"{% if original_query_id %} OriginalAdHocQueryID="{{ original_query_id }}"{% endif %}{% if query_view_id %} QueryViewID="{{ query_view_id }}"{% endif %}{% if max_rows %} MaxRecords="{{ max_rows }}"{% endif %}{% if no_data %} DoReturnData="{{ no_data }}"{% endif %}{% if suppress_dupes %} SuppressDuplicateRows="{{ suppress_dupes }}"{% endif %}{% if bypass_count %} BypassRecordCount="{{ bypass_count }}"{% endif %}{% if suppress_pkeys %} SuppressPrimaryKeyField="{{ suppress_pkeys }}"{% endif %}{% if context_id %} ContextRecordID="{{ context_id }}"{% endif %}{% if start %} Start="{{ start }}"{% endif %}{% if limit %} Limit="{{ limit }}"{% endif %}{% if search_text %} SearchText="{{ search_text }}"{% endif %}{% if include_security_sql %} IncludeSecuritySQL="{{ include_security_sql }}"{% endif %}{% if list_builder %} ProcessForListBuilder="{{ list_builder }}"{% endif %} xmlns="Blackbaud.AppFx.WebService.API.1">
-      {% include "bbec_api/client_app.xml" %}
+      {% include "client_app.xml" %}
       {% block query_filters %}
       {% if select_fields %}<SelectFields>
         {% for field in select_fields %}
