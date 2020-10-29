@@ -23,20 +23,20 @@ data_dict = {
         # 'Jewish Community Relations Council',
         # 'Regional Security Initiative',
         'Aspen',
-        'Sponsorships',
+        # 'Sponsorships',
         # 'Operations',
     ],
     'FY21 YTD': [
         get_kpi('KPI Unrestricted - AK'),
         get_kpi('KPI Israel Global - SM'),
         get_kpi('KPI Aspen - AK'),
-        get_kpi('KPI In year sponsorships and grants - AK'),
+        # get_kpi('KPI In year sponsorships and grants - AK'),
     ],
     'FY21 Goal': [
         '$3,500,000',
         '$0',
         '$0',
-        '$528,000',
+        # '$528,000',
     ]
 }
 data = pd.DataFrame.from_dict(data_dict)
