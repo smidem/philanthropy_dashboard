@@ -20,7 +20,7 @@ bizops_endpoints = {
     ),
 }
 
-env = Environment(loader=FileSystemLoader('../templates'),
+env = Environment(loader=FileSystemLoader('templates'),
                   autoescape=select_autoescape(['html', 'xml']),
                   trim_blocks=False)
 
