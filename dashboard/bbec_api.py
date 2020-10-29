@@ -20,7 +20,7 @@ bizops_endpoints = {
     ),
 }
 
-env = Environment(loader=FileSystemLoader('templates'),
+env = Environment(loader=FileSystemLoader('../templates'),
                   autoescape=select_autoescape(['html', 'xml']),
                   trim_blocks=False)
 
@@ -268,7 +268,7 @@ def bbec(
     return actual_decorator
 
 
-@bbec(template='bbec_api/id_by_name.xml',
+@bbec(template='id_by_name.xml',
       appfx=True,
       action='AdHocQueryGetIDByName',
       db_alias='prod')
@@ -277,7 +277,7 @@ def get_query_id(db_id: str, name: str, xml: dict):
     return xml.get('ID')
 
 
-@bbec(template='bbec_api/run_query.xml',
+@bbec(template='run_query.xml',
       appfx=True,
       action='AdHocQueryProcess',
       db_alias='prod')
