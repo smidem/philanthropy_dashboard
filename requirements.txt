@@ -2,3 +2,4 @@ flask
 pandas
 xmltodict
 requests
+gunicorn
