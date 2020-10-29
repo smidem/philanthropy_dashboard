@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+               xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <AdHocQueryGetIDByNameRequest xmlns="Blackbaud.AppFx.WebService.API.1">
+      {% include "bbec_api/client_app.xml"%}
+      <Name>{{ name }}</Name>
+    </AdHocQueryGetIDByNameRequest>
+  </soap:Body>
+</soap:Envelope>

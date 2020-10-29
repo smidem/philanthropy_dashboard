@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+               xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <AdHocQueryProcessRequest AdHocQueryID="{{ query_id }}"{% if original_query_id %} OriginalAdHocQueryID="{{ original_query_id }}"{% endif %}{% if query_view_id %} QueryViewID="{{ query_view_id }}"{% endif %}{% if max_rows %} MaxRecords="{{ max_rows }}"{% endif %}{% if no_data %} DoReturnData="{{ no_data }}"{% endif %}{% if suppress_dupes %} SuppressDuplicateRows="{{ suppress_dupes }}"{% endif %}{% if bypass_count %} BypassRecordCount="{{ bypass_count }}"{% endif %}{% if suppress_pkeys %} SuppressPrimaryKeyField="{{ suppress_pkeys }}"{% endif %}{% if context_id %} ContextRecordID="{{ context_id }}"{% endif %}{% if start %} Start="{{ start }}"{% endif %}{% if limit %} Limit="{{ limit }}"{% endif %}{% if search_text %} SearchText="{{ search_text }}"{% endif %}{% if include_security_sql %} IncludeSecuritySQL="{{ include_security_sql }}"{% endif %}{% if list_builder %} ProcessForListBuilder="{{ list_builder }}"{% endif %} xmlns="Blackbaud.AppFx.WebService.API.1">
+      {% include "bbec_api/client_app.xml" %}
+      {% block query_filters %}
+      {% if select_fields %}<SelectFields>
+        {% for field in select_fields %}
+          <f ObjectName="{{ field['obj_name'] }}" ColumnName="{{ field['col_name'] }}" ParentPath="{{ field['parent_path'] }}" DisplayPath="{{ field['display_path'] }}" AliasName="{{ field['alias'] }}" AggregateType="{{ field['agg_type'] }}" IsIDSetField="{{ field['is_id_set'] }}" DataListFilterOperator="{{ field['data_filters'] }}" SmartQueryFilterOperator="{{ field['smart_filters'] }}" IsHidden="{{ field['is_hidden'] }}">
+            {% if  field['id_guid'] %}<IDSetFieldInfo>
+              <ID>{{ field['id_guid'] }}</ID>
+            </IDSetFieldInfo>{% endif %}
+          </f>
+        {% endfor %}
+      </SelectFields>{% endif %}
+      {% if filter_fields %}<FilterFields>
+        {% for filter in filter_fields %}
+          <f ObjectName="{{ filter['obj_name'] }}"
+             ColumnName="{{ filter['col_name'] }}"
+             ParentPath="{{ filter['parent_path'] }}"
+             DisplayPath="{{ filter['display_path'] }}"
+             IsIDSetField="{{ filter['is_id_set'] }}"
+             FilterOperator="{{ filter['filter_operator'] }}"
+             CompareType="{{ filter['compare_type'] }}"
+             UseLeftParenthesis="{{ filter['use_left'] }}"
+             UseRightParenthesis="{{ filter['use_right'] }}"
+             LeftParenthesisCount="{{ filter['left_par_count'] }}"
+             RightParenthesisCount="{{ filter['right_par_count'] }}"
+             IncludeBlanks="{{ filter['include_banks'] }}"
+             ValueIsOutputField="{{ filter['value_is'] }}"
+             MeetsAllCriteria="{{ filter['all_criteria_met'] }}"
+             MeetsNoneOfTheCriteria="{{ filter['no_criteria_met'] }}"
+             MeetsNoneOfTheCriteriaNotEqualTo="{{ filter['no_criteria_met_not_equal_to'] }}"
+             IncludeCurrentNode="{{ filter['include_current_node'] }}"
+             DataMartLastRefresh="{{ filter['last_refresh'] }}">
+            {% if filter['id_set'] %}
+              <IDSetFieldInfo>
+                <ID>{{ filter['id_set']['id_guid'] }}</ID>
+              </IDSetFieldInfo>
+            {% endif %}
+            {% if filter['date_filters'] %}
+              <DateFilterTypes>
+                {% for filter in filter['date_filters'] %}
+                  <QueryDateFilterType>{{ filter['query_date'] }}</QueryDateFilterType>
+                {% endfor %}
+              </DateFilterTypes>
+            {% endif %}
+            {% if filter['fuzzy_filters'] %}
+              <FuzzyDateFilterTypes>
+                {% for fuzzy_date in filter['fuzzy_filters'] %}
+                  <QueryFuzzyDateFilterType>{{ fuzzy_date }}</QueryFuzzyDateFilterType>
+                {% endfor %}
+              </FuzzyDateFilterTypes>
+            {% endif %}
+            {% if filter['date_filters'] %}
+              <MonthDayFilterTypes>
+                {% for date in filter['date_filters'] %}
+                  <QueryMonthDayFilterType>{{ date }}</QueryMonthDayFilterType>
+                {% endfor %}
+              </MonthDayFilterTypes>
+            {% endif %}
+            {% if filter['values'] %}
+              <Values>
+                {% for value in filter['values'] %}
+                  <v>value</v>
+                {% endfor %}
+              </Values>
+            {% endif %}
+            {% if filter['translated_values'] %}
+              <TranslatedValues>
+                {% for value in filter['translated_values'] %}
+                  <v>{{ value }}</v>
+                {% endfor %}
+              </TranslatedValues>
+            {% endif %}
+            {% if filter['data_type'] %}
+              <DataType>{{ filter['data_type'] }}</DataType>
+            {% endif %}
+          </f>
+        {% endfor %}
+      </FilterFields>{% endif %}
+      {% if sort_fields %}<SortFields>
+        {% for field in sort_fields %}
+          <f AliasName="{{ field['alias'] }}"
+             FieldName="{{ field['name'] }}"
+             SortOrder="{{ field['order'] }}"/>
+        {% endfor %}
+      </SortFields>{% endif %}
+      {% if group_filters %}<GroupFilterFields>
+        {% for filter in group_filters %}
+          <f AggregateType="{{ filter['agg_type'] }}"/>
+        {% endfor %}
+      </GroupFilterFields>{% endif %}
+      {% if security_context %}<SecurityContext>
+        <SecurityFeatureID>{{ security_context['guid'] }}</SecurityFeatureID>
+        <SecurityFeatureType>{{ security_context['feature_type'] }}</SecurityFeatureType>
+        {% if security_context['record_context'] %}
+          <RecordContext>
+            <RecordID>{{ security_context['record_context']['id'] }}</RecordID>
+            <RecordType>{{ security_context['record_context']['type'] }}</RecordType>
+          </RecordContext>
+        {% endif %}
+        {% if security_context['attribute_context'] %}
+          <AttributeContext>
+            <AttributeCategoryID>{{ security_context['attribute_context'] }}</AttributeCategoryID>
+          </AttributeContext>
+        {% endif %}
+      </SecurityContext>{% endif %}
+      {% if deferred_result %}<DeferredResultKey>{{ deferred_result }}</DeferredResultKey>{% endif %}
+      {% if parameters %}<Parameters>
+        <Values xmlns="bb_appfx_dataforms">
+          {% for item in parameters %}
+            <fv ID="{{ item['id'] }}">
+              <Value/>
+              <ValueTranslation>{{ item['translation'] }}</ValueTranslation>
+            </fv>
+          {% endfor %}
+        </Values>
+      </Parameters>{% endif %}
+      {% if cancel_id %}<CancelID>{{ cancel_id }}</CancelID>{% endif %}
+      {% endblock %}
+    </AdHocQueryProcessRequest>
+  </soap:Body>
+</soap:Envelope>
