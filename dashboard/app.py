@@ -7,6 +7,8 @@ import dash_table
 rest_jco = get_data('KPI Rest to Jco (new way) - AK')
 app = dash.Dash(__name__)
 server = app.server
+server.config['EXPLAIN_TEMPLATE_LOADING'] = True
+server.debug = True
 
 app.layout = html.Div([
     html.P(html.Div(html.H3('Annual Campaign Dashboard'))),
