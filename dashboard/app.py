@@ -9,7 +9,11 @@ server = app.server
 
 app.layout = html.Div([
     html.Div(
-        html.Img(src='static/New JCO Logo.png'),
+        html.Img(
+            src='http://cdn.mcauto-images-production.sendgrid.net/'
+                'e3acd8c9d23315eb/72be3792-bb15-4a5a-81c2-3eb9c7a04d8e/'
+                '241x51.png'
+        ),
         style={'textAlign': 'center'}
     ),
     html.P(
