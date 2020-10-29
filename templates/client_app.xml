@@ -1,0 +1,1 @@
+<ClientAppInfo REDatabaseToUse="{{ db_id }}" ClientAppName="philanthropy_dashboard" TimeOutSeconds="5"/>
