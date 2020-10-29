@@ -42,8 +42,8 @@ app.layout = html.Div([
             ],
             data=data.to_dict('records'),
         ),
-        style={'textAlign': 'center'}
-    )
+        style={'textAlign': 'center'},
+    ),
 ])
 
 if __name__ == '__main__':

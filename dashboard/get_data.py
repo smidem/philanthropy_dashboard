@@ -33,13 +33,13 @@ data_dict = {
         f"${get_kpi('KPI Aspen - AK'):,.2f}",
         f"${get_kpi('KPI Security Initiative - SM'):,.2f}",
         f"${get_kpi('KPI In year sponsorships and grants'):,.2f}",
-        f"${get_kpi('KPI Operations - SM'):,.2f}"
+        f"${get_kpi('KPI Operations - SM'):,.2f}",
     ],
     'fy21_goal': [
         '$3,500,000',
         '$0',
         '$0',
-        '$0'
+        '$0',
         '$0',
         '$528,000',
         '$506,500',
