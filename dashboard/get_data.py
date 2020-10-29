@@ -20,8 +20,8 @@ data_dict = {
         'Flagship',
         'Israel/Global',
         # 'Jewish Life and Engagement',
-        # 'Jewish Community Relations Council',
-        # 'Regional Security Initiative',
+        'Jewish Community Relations Council',
+        'Regional Security Initiative',
         'Aspen',
         'Sponsorships',
         'Operations',
@@ -29,13 +29,17 @@ data_dict = {
     'fy21_ytd': [
         f"${get_kpi('KPI Unrestricted - AK'):,.2f}",
         f"${get_kpi('KPI Israel Global - SM'):,.2f}",
+        f"${get_kpi('KPI JCRC - SM'):,.2f}",
         f"${get_kpi('KPI Aspen - AK'):,.2f}",
+        f"${get_kpi('KPI Security Initiative - SM'):,.2f}",
         f"${get_kpi('KPI In year sponsorships and grants'):,.2f}",
         f"${get_kpi('KPI Operations - SM'):,.2f}"
     ],
     'fy21_goal': [
         '$3,500,000',
         '$0',
+        '$0',
+        '$0'
         '$0',
         '$528,000',
         '$506,500',
