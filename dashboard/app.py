@@ -24,10 +24,11 @@ app.layout = html.Div([
     ),
     dash_table.DataTable(
         id='philanthropy_dashboard',
-        # style_table={
-        #     'maxHeight': '700px',
-        #     'overflowY': 'scroll'
-        # },
+        style_table={
+            'maxHeight': '700px',
+            'maxWidth': '700px',
+            # 'overflowY': 'scroll',
+        },
         # style_cell={
         #     'maxWidth': '50px',
         # },
